@@ -14,11 +14,11 @@ class LinkedList {
             this.length++;
         } else {
             this._tail = this._head;
-            while (this._tail.next!= null){
+            while (this._tail.next != null){
               this._tail = this._tail.next
             }
-            this._tail.next = new Node(data);
-            this._tail.next.prev = this._tail;
+            this._tail.next = new Node(data, this._tail);
+            //this._tail.next.prev = this._tail;
             this._tail=this._tail.next;
             this.length++;
         }
@@ -32,7 +32,14 @@ class LinkedList {
       return this._tail.data;
     }
 
-    at(index) {}
+    at(index) {
+        let findNode = this._head;
+        while (index != 0) {
+            findNode = findNode.next;
+            index--;
+        }
+        return findNode.data;
+    }
 
     insertAt(index, data) {}
 
