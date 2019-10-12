@@ -83,11 +83,21 @@ class LinkedList {
         }
         findNode.prev.next = findNode.next;
         findNode.next.prev = findNode.prev;
+        this.length--;
     }
 
     reverse() {}
 
-    indexOf(data) {}
+    indexOf(data) {
+        let findNode = this._head;
+        let i = 0;
+        while (i<this.length) {
+          if (findNode.data === data) return i;
+          findNode = findNode.next;
+          i++;
+        }
+        return -1;    
+    }
 }
 
 module.exports = LinkedList;
