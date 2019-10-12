@@ -26,6 +26,7 @@ class LinkedList {
             this._tail=this._tail.next;
             this.length++;
         }
+        return this;
     }
 
     head() {
@@ -63,6 +64,7 @@ class LinkedList {
             this.length++;
             this.moveTail();
         }
+        return this;
     }
     
     isEmpty() {
@@ -84,6 +86,7 @@ class LinkedList {
         findNode.prev.next = findNode.next;
         findNode.next.prev = findNode.prev;
         this.length--;
+        return this;
     }
 
     reverse() {
@@ -101,6 +104,7 @@ class LinkedList {
             currentNode.prev = oldNext;
             currentNode = currentNode.prev;
         }
+        return this;
     }
 
     indexOf(data) {
