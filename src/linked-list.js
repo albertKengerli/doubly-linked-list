@@ -75,7 +75,15 @@ class LinkedList {
         this.length = 0;
     }
 
-    deleteAt(index) {}
+    deleteAt(index) {
+        let findNode = this._head;
+        while (index != 0) {
+            findNode = findNode.next;
+            index--;
+        }
+        findNode.prev.next = findNode.next;
+        findNode.next.prev = findNode.prev;
+    }
 
     reverse() {}
 
