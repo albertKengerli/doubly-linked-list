@@ -75,16 +75,30 @@ class LinkedList {
         this._head = new Node ();
         this._tail = this._head;
         this.length = 0;
+
+        return this;
     }
 
     deleteAt(index) {
         let findNode = this._head;
+      
         while (index != 0) {
             findNode = findNode.next;
             index--;
         }
-        findNode.prev.next = findNode.next;
-        findNode.next.prev = findNode.prev;
+        
+        if (findNode.prev != null) {
+          findNode.prev.next = findNode.next;
+        } else {
+          this._head = findNode.next;
+        }
+
+        if (findNode.next != null) {
+          findNode.next.prev = findNode.prev;
+        } else {
+          this._tail = findNode.prev;
+        }
+        
         this.length--;
         return this;
     }
