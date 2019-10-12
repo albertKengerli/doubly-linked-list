@@ -7,18 +7,22 @@ class LinkedList {
         this._tail = this._head;
     }
 
+    moveTail() {
+        this._tail = this._head;
+        while (this._tail.next != null){
+            this._tail = this._tail.next
+        }
+    }
+    
     append(data) {
         if (this.length === 0) {
             this._head = new Node(data);
             this._tail = this._head;
             this.length++;
         } else {
-            this._tail = this._head;
-            while (this._tail.next != null){
-              this._tail = this._tail.next
-            }
+            this.moveTail();
             this._tail.next = new Node(data, this._tail);
-            //this._tail.next.prev = this._tail;
+            
             this._tail=this._tail.next;
             this.length++;
         }
@@ -38,14 +42,38 @@ class LinkedList {
             findNode = findNode.next;
             index--;
         }
-        return findNode.data;
+        return findNode.data;       
     }
 
-    insertAt(index, data) {}
+    insertAt(index, data) {
+        if (index === 0) {
+            let tempNode = new Node (data, null, this._head);
+            this._head.prev = tempNode;
+            this._head = tempNode;
+            this.length++;
+        } else {
+            this._tail = this._head;
+            while (index != 0) {
+                this._tail = this._tail.next;
+                index--;
+            }
+            let tempNode = this._tail.prev;
+            tempNode.next = new Node (data, tempNode, this._tail);
+            this._tail.prev = tempNode.next;
+            this.length++;
+            this.moveTail();
+        }
+    }
+    
+    isEmpty() {
+        return (this.length === 0) ? true : false;
+    }
 
-    isEmpty() {}
-
-    clear() {}
+    clear() {
+        this._head = new Node ();
+        this._tail = this._head;
+        this.length = 0;
+    }
 
     deleteAt(index) {}
 
